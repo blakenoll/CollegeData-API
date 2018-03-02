@@ -6,7 +6,7 @@ const typeDefs = `
 type Query {
   author(firstName: String, lastName: String,): Author
   allAuthors: [Author]
-  getFortuneCookie: String
+  allSchools: [School]
   testString: String
 }
 
@@ -24,6 +24,13 @@ type Post {
   views: Int
   author: Author
 }
+
+type School {
+  id: Int
+  school_name: String
+  school_city: String
+}
+
 `;
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });

@@ -1,4 +1,5 @@
-import { Author, Post } from './connectors';
+import { Author, Post, GetSchools } from './connectors';
+import fetch from 'node-fetch'
 
 const resolvers = {
   Query: {
@@ -8,6 +9,9 @@ const resolvers = {
     allAuthors() {
       return Author.findAll();
     },
+    allSchools() {
+      return GetSchools.getOne();
+    }
   },
   Author: {
     posts(author) {
@@ -21,7 +25,7 @@ const resolvers = {
     views(post) {
       return Post.findOne({ postId: post.id }).then(view => post.views);
     }
-  }
+  },
 };
 
 export default resolvers;
