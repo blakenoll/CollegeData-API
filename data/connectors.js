@@ -41,12 +41,15 @@ db.sync({ force: true }).then(() => {
 const Author = db.models.author;
 const Post = db.models.post;
 
+// REST API integration for Department of Education
 const baseURL = 'https://api.data.gov/ed/collegescorecard/v1/schools?';
 const apiKey = '&api_key=dM8fcIUTRoq9ieuaPORfcjGilVhjzsOoXTB2p0SB';
 
 const GetSchools = {
-  getOne() {
-    return fetch(`${baseURL}school.city=los%20angeles&fields=id,school.name,school.city&per_page=100&sort=school.name${apiKey}`)
+  getOne(city) {
+    const schoolCity = encodeURIComponent(city);
+    console.log(schoolCity);
+    return fetch(`${baseURL}school.city=${schoolCity}&fields=id,school.name,school.city&per_page=100&sort=school.name${apiKey}`)
       .then(res => res.json())
       .then(res => {
         // convert JSON to string to replace periods with _

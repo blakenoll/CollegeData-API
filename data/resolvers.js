@@ -9,8 +9,8 @@ const resolvers = {
     allAuthors() {
       return Author.findAll();
     },
-    allSchools() {
-      return GetSchools.getOne();
+    allSchools(_, args) {
+      return GetSchools.getOne(args.city);
     }
   },
   Author: {
