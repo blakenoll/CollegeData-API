@@ -10,7 +10,7 @@ const resolvers = {
       return Author.findAll();
     },
     allSchools(_, args) {
-      return GetSchools.getOne(args.city);
+      return GetSchools.getOne(args.city, args.name);
     }
   },
   Author: {
@@ -26,6 +26,23 @@ const resolvers = {
       return Post.findOne({ postId: post.id }).then(view => post.views);
     }
   },
+  School: {
+    cost(School) {
+      return School['2015.cost.attendance.academic_year'];
+    },
+    name(School) {
+      return School['school.name'];
+    },
+    city(School) {
+      return School['school.city'];
+    },
+    admissRate(School) {
+      return School['2015.admissions.admission_rate.overall'];
+    },
+    url(School) {
+      return School['school.school_url'];
+    }
+  }
 };
 
 export default resolvers;

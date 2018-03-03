@@ -4,9 +4,9 @@ import resolvers from './resolvers'
 
 const typeDefs = `
 type Query {
-  author(firstName: String, lastName: String,): Author
+  author(firstName: String, lastName: String): Author
   allAuthors: [Author]
-  allSchools(city: String): [School]
+  allSchools(city: String, name: String): [School]
   testString: String
 }
 
@@ -27,8 +27,11 @@ type Post {
 
 type School {
   id: Int
-  school_name: String
-  school_city: String
+  name: String
+  city: String
+  cost: Int
+  admissRate: Float
+  url: String
 }
 
 `;
