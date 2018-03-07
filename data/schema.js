@@ -6,7 +6,7 @@ const typeDefs = `
 type Query {
   author(firstName: String, lastName: String): Author
   allAuthors: [Author]
-  allSchools(city: String, name: String): [School]
+  allSchools(city: String, name: String, zipcode: Int): [School]
   testString: String
 }
 

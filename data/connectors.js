@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 import casual from 'casual';
 import _ from 'lodash';
 import fetch from 'node-fetch';
+import NodeGeocoder from 'node-geocoder';
 
 const db = new Sequelize('blog', null, null, {
   dialect: 'sqlite',
@@ -21,22 +22,22 @@ const PostModel = db.define('post', {
 AuthorModel.hasMany(PostModel);
 PostModel.belongsTo(AuthorModel);
 
-// creat mock data with a seed
-casual.seed(123);
+// create mock data with a seed
+// casual.seed(123);
 
-db.sync({ force: true }).then(() => {
-  _.times(10, () => {
-    return AuthorModel.create({ 
-      firstName: casual.first_name,
-      lastName: casual.last_name,
-    }).then((author) => {
-      return author.createPost({
-        title: `A post by ${author.firstName}`,
-        text: casual.sentences(3),
-      });
-    });
-  });
-});
+// db.sync({ force: true }).then(() => {
+//   _.times(10, () => {
+//     return AuthorModel.create({ 
+//       firstName: casual.first_name,
+//       lastName: casual.last_name,
+//     }).then((author) => {
+//       return author.createPost({
+//         title: `A post by ${author.firstName}`,
+//         text: casual.sentences(3),
+//       });
+//     });
+//   });
+// });
 
 const Author = db.models.author;
 const Post = db.models.post;
@@ -45,17 +46,33 @@ const Post = db.models.post;
 const baseURL = 'https://api.data.gov/ed/collegescorecard/v1/schools?';
 const apiKey = '&api_key=dM8fcIUTRoq9ieuaPORfcjGilVhjzsOoXTB2p0SB';
 
+const options = {
+  provider: 'google',
+  apiKey: 'AIzaSyDOLHdOrsHQam6jC2bh1nWUYwiqMZBr35s'
+}
+
+const geocoder = NodeGeocoder(options);
+
+// function to retrieve schools from scorecard
 const GetSchools = {
-  getOne(city, name) {
-    const schoolCity = encodeURIComponent(city);
-    const schoolName = encodeURIComponent(name);
-    console.log(schoolCity);
-    return fetch(`${baseURL}school.city=${schoolCity}&school.name=${schoolName}&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name${apiKey}`)
+  getOne(args) {
+    const schoolCity =  (args.city) ? encodeURIComponent(args.city) : "";
+    const schoolName = (args.name) ? encodeURIComponent(args.name) : "";
+    let latitude, longitude;
+
+   return geocoder.geocode(args.city).then(res => { console.log(res, res[0].latitude, res[0].longitude)
+      let { latitude, longitude } = res[0]
+      console.log(latitude);
+      return(latitude, longitude);
+    }).then( (latitude, longitude) => {
+      console.log(latitude);
+      return fetch(`${baseURL}school.city=${schoolCity}&school.name=${schoolName}&school.degrees_awarded.highest=3,4&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name${apiKey}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res.results);
+        // console.log(res.results);
         return res.results;
       });
+    })
   },
 };
 

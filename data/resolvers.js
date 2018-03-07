@@ -10,7 +10,7 @@ const resolvers = {
       return Author.findAll();
     },
     allSchools(_, args) {
-      return GetSchools.getOne(args.city, args.name);
+      return GetSchools.getOne(args);
     }
   },
   Author: {
@@ -37,7 +37,7 @@ const resolvers = {
       return School['school.city'];
     },
     admissRate(School) {
-      return School['2015.admissions.admission_rate.overall'];
+      return(School['2015.admissions.admission_rate.overall'] * 100);
     },
     url(School) {
       return School['school.school_url'];
