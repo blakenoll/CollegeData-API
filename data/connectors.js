@@ -66,7 +66,7 @@ const GetSchools = {
       return(latitude, longitude);
     }).then( (latitude, longitude) => {
       console.log(latitude);
-      return fetch(`${baseURL}school.city=${schoolCity}&school.name=${schoolName}&school.degrees_awarded.highest=3,4&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name${apiKey}`)
+      return fetch(`${baseURL}school.city=${schoolCity}&school.name=${schoolName}&school.degrees_awarded.predominant=3,4&2015.cost.attendance.academic_year__not=0&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name${apiKey}`)
       .then(res => res.json())
       .then(res => {
         // console.log(res.results);

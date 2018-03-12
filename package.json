@@ -29,7 +29,8 @@
     ]
   },
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node"
+    "start": "babel-node server.js",
+    "Dev": "nodemon ./server.js --exec babel-node"
   },
   "repository": {
     "type": "git",
