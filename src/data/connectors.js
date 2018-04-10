@@ -38,4 +38,4 @@ const GetSchools = {
   },
 };
 
-export { Author, Post, GetSchools };
+export { GetSchools };

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetSchools = exports.Post = exports.Author = undefined;
+exports.GetSchools = undefined;
 
 var _sequelize = require('sequelize');
 
@@ -66,6 +66,4 @@ var GetSchools = {
   }
 };
 
-exports.Author = Author;
-exports.Post = Post;
 exports.GetSchools = GetSchools;
