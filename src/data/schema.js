@@ -4,25 +4,7 @@ import resolvers from './resolvers'
 
 const typeDefs = `
 type Query {
-  author(firstName: String, lastName: String): Author
-  allAuthors: [Author]
   allSchools(city: String, name: String, zipcode: Int): [School]
-  testString: String
-}
-
-type Author {
-  id: Int
-  firstName: String
-  lastName: String
-  posts: [Post]
-}
-
-type Post {
-  id: Int
-  title: String
-  text: String
-  views: Int
-  author: Author
 }
 
 type School {
