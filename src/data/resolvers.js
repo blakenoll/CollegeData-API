@@ -1,4 +1,4 @@
-import { Author, Post, GetSchools } from './connectors';
+import { GetSchools } from './connectors';
 import fetch from 'node-fetch'
 
 const resolvers = {
