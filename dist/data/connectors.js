@@ -5,14 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.GetSchools = undefined;
 
-var _sequelize = require('sequelize');
-
-var _sequelize2 = _interopRequireDefault(_sequelize);
-
-var _casual = require('casual');
-
-var _casual2 = _interopRequireDefault(_casual);
-
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -40,7 +32,7 @@ var geocoder = (0, _nodeGeocoder2.default)(options);
 
 // function to retrieve schools from scorecard
 var GetSchools = {
-  getOne: function getOne(args) {
+  getAll: function getAll(args) {
     var schoolCity = args.city ? encodeURIComponent(args.city) : "";
     var schoolName = args.name ? encodeURIComponent(args.name) : "";
     var latitude = void 0,

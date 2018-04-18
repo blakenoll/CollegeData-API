@@ -15,7 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var resolvers = {
   Query: {
     allSchools: function allSchools(_, args) {
-      return _connectors.GetSchools.getOne(args);
+      return _connectors.GetSchools.getAll(args);
     }
   },
 

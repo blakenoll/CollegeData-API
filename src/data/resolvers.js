@@ -4,7 +4,7 @@ import fetch from 'node-fetch'
 const resolvers = {
   Query: {
     allSchools(_, args) {
-      return GetSchools.getOne(args);
+      return GetSchools.getAll(args);
     }
   },
 

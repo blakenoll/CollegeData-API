@@ -15,7 +15,7 @@ const geocoder = NodeGeocoder(options);
 
 // function to retrieve schools from scorecard
 const GetSchools = {
-  getOne(args) {
+  getAll(args) {
     const schoolCity =  (args.city) ? encodeURIComponent(args.city) : "";
     const schoolName = (args.name) ? encodeURIComponent(args.name) : "";
     let latitude, longitude;
