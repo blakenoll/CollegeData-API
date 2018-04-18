@@ -1,5 +1,3 @@
-import Sequelize from 'sequelize';
-import casual from 'casual';
 import _ from 'lodash';
 import fetch from 'node-fetch';
 import NodeGeocoder from 'node-geocoder';
