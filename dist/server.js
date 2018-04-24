@@ -20,6 +20,12 @@ var GRAPHQL_PORT = 3001;
 
 var graphQLServer = (0, _express2.default)();
 
+graphQLServer.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 graphQLServer.use('/graphql', _bodyParser2.default.json(), (0, _apolloServerExpress.graphqlExpress)({ schema: _schema2.default }));
 graphQLServer.use('/graphiql', (0, _apolloServerExpress.graphiqlExpress)({ endpointURL: '/graphql' }));
 graphQLServer.use('/', (0, _apolloServerExpress.graphiqlExpress)({ endpointURL: '/graphql' }));
