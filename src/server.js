@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import schema from './data/schema';
@@ -7,17 +8,13 @@ const GRAPHQL_PORT = 3001;
 
 const graphQLServer = express();
 
-graphQLServer.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
+graphQLServer.use(cors());
 graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 graphQLServer.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 graphQLServer.use('/', graphiqlExpress({ endpointURL: '/graphql' }));
 
-graphQLServer.listen(process.env.PORT, () =>
+graphQLServer.listen(3001, () =>
   console.log(
     `GraphiQL is now running on http://localhost:${process.env.PORT}/graphiql`
   )
