@@ -38,22 +38,10 @@ var GetSchools = {
     var latitude = void 0,
         longitude = void 0;
 
-    return geocoder.geocode(args.city).then(function (res) {
-      console.log(res, res[0].latitude, res[0].longitude);
-      var _res$ = res[0],
-          latitude = _res$.latitude,
-          longitude = _res$.longitude;
-
-      console.log(latitude);
-      return latitude, longitude;
-    }).then(function (latitude, longitude) {
-      console.log(latitude);
-      return (0, _nodeFetch2.default)(baseURL + 'school.city=' + schoolCity + '&school.name=' + schoolName + '&school.degrees_awarded.predominant=3,4&2015.cost.attendance.academic_year__not=0&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name' + apiKey).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        // console.log(res.results);
-        return res.results;
-      });
+    return (0, _nodeFetch2.default)(baseURL + 'school.city=' + schoolCity + '&school.name=' + schoolName + '&school.degrees_awarded.predominant=3,4&2015.cost.attendance.academic_year__not=0&fields=id,school.name,school.city,2015.cost.attendance.academic_year,2015.admissions.admission_rate.overall,school.school_url&per_page=100&sort=school.name' + apiKey).then(function (res) {
+      return res.json();
+    }).then(function (res) {
+      return res.results;
     });
   }
 };
