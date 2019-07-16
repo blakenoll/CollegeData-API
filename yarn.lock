@@ -2585,9 +2585,9 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-geocode@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.0.7.tgz#68d4703b4c921b40182e2918c180c77e4044df3a"
+react-geocode@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-geocode/-/react-geocode-0.1.2.tgz#9e7c8114fbd66550d32a417cf95d36fa4f1cd45f"
 
 readable-stream@2.2.7:
   version "2.2.7"
